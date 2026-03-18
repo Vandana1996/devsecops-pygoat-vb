@@ -317,3 +317,113 @@ Find and click the Pygoat Deploy CD action (we create this in lab )
 Click Run workflow, select Run workflos
 
 Confirm that Pygoat deployed successfully by browsing to the Public IPv4 DNS address of your EC2 instance.
+
+
+# ZAP Automation iwth GitHub Workflows
+
+By the end of this lesson you will understand:
+
+ZAP automation options and their strengths and weaknesses
+
+ZAP Docker packaged scans and GitHub Action
+
+How to implement and configure automated scans through GitHub Actions
+
+# Lab Instructions
+Download DAST Action: https://github.com/chad-butler-git/devsecops-with-github-actions/blob/main/git/workflows/DAST.yaml 
+
+Add the file to your repo/git/workflows/ directory
+
+Edit the file
+
+Find the target line and add your EC2 public DNS name.
+
+Save the workflow
+
+Run the workflow
+
+Analyze workflow to ensure it ran successfully
+
+Download zap report from Workflow summary page -OR- check the Issues tab for the ZAP report issue.
+
+
+
+# Troubleshooting Tips
+Confirm that your EC2 public DNS name in the action file includes http://
+
+SSH into your AWS EC2 Instance and restart and check service states. 
+
+sudo systemctl restart gunicorn.service ; sudo systemctl status gunicorn.service
+
+sudo systemctl restart nginx ; sudo systemctl status nginx
+
+Check GitHub Action logs and output for errors
+
+If you get an error regarding the rules.tsv file (“Error when reading the rules file”) confirm that the rules.tsv file is using tabs instead of spaces
+
+Post questions in the community
+
+# ZAP Authentication
+In this lesson we will explore ZAP authentication contexts and use them in a lab to add authentication to our automated baseline scans. By the end of this lesson you will understand:
+
+ZAP authentication contexts and verification strategies
+
+How to enable authentication in GitHub Action scan workflows
+
+How to determine if authentication is successful
+
+How to test authentication
+
+# Lab Instructions
+Open ZAP
+
+Start a manual explore of Pygoat
+
+Click a link you don’t have access to (before authenticating)
+
+Login with your test user account
+
+Click the same link 
+
+Run Authentication Tester
+
+Provide your test user password
+
+Click test and observe
+
+Wait until authentication tester finishes and close
+
+Open the Authentication Context 
+
+Explore the settings
+
+Export Context
+
+Right-click the context and select Export Context
+
+Save it to a location on your system
+
+Upload to the .zap directory in your Pygoat repository
+
+Modify DAST.yaml workflow
+
+Find the cmd_options: section and add -n .zap/<your-context-file.context>
+
+Re-run the DAST scan
+
+Check Action log output to determine if it ran successfully.
+
+# Troubleshooting Tips
+Confirm that your EC2 public DNS name in the action file includes http://
+
+SSH into your AWS EC2 Instance and restart and check service states. 
+
+sudo systemctl restart gunicorn.service ; sudo systemctl status gunicorn.service
+
+sudo systemctl restart nginx ; sudo systemctl status nginx
+
+Check GitHub Action logs and output for errors
+
+If you get an error regarding the rules.tsv file (“Error when reading the rules file”) confirm that the rules.tsv file is using tabs instead of spaces
+
+Post questions in the community
