@@ -206,3 +206,114 @@ If the delete fails the first time, this is likely due to the fact that the IAM 
 Click the Retry delete button
 
 Carefully confirm that you are deleting the correct stack and select “Force delete this entire stack”
+
+
+# Recreating AWS lba Resources
+
+This is only needed if you followed the steps to delete your AWS Cloud Formation stack in the Clean Up AWS Lab Resources lesson
+
+# Create Cloud Formation Stack
+Log in to your AWS account
+
+Click CloudFormation
+
+Click Create stack
+
+Select "With new resources (standard)
+
+Select "Upload a template file"
+
+Download the template file from: https://github.com/chad-butler-git/devsecops-with-github-actions/blob/main/aws/cf-ec2.yaml
+
+Click Choose file
+
+Select the cf-ec2.yaml file you downloaded
+
+Click next
+
+Provide a stack name (e.g. devsecops)
+
+Select the keypair you created in lesson 3.1.5
+
+Enter your Source IP address
+
+Browse to https://ifconfig.me/
+
+Copy and paste the IP address from ifconfig.me and append a /32
+
+Click Next
+
+Click the checkbox to confirm "I acknowledge that AWS CloudFormation might create IAM resources."
+
+Click Next
+
+Click Submit
+
+Wait for stack creation process to complete.
+
+If the Creation fails, check the events log. If the error is related to the PyGoatSecurityGroup, do the following
+
+Click EC2 console
+
+Under Network & Security, Click Security Groups
+
+Select the PyGoatSG security group
+
+Click Actions and Delete security groups
+
+Return to the CloudFormation console
+
+Delete the devsecops stack and start over from Step 3
+
+# Re-Link IAM User
+Click the IAM console
+
+Click Users
+
+Select the user you created in lesson 3.1.5
+
+Click Add permission > Add permission
+
+Select "Attach policies directly"
+
+Search for Pygoat
+
+Select the policy named devsecops-PyGoatIAMPolicy-<stackID>
+
+Click Next
+
+Review details and Click Add permission
+
+# Update EC2 Hostname
+Click the EC2 console
+
+Click Instances
+
+Select your running instance created by CloudFormation
+
+Copy the Public IPv4 DNS address
+
+Login to GitHub
+
+Select your Pygoat forked repository
+
+Click Settings
+
+Under Security, click Secrets and variables
+
+Click Actions
+
+Find the repository secret named HOST and click the edit button
+
+Paste the Public IPv4 DNS address you copied into the Value box.
+
+Click Update secret
+
+# Re-deploy
+From GitHub.com, click the Actions tab
+
+Find and click the Pygoat Deploy CD action (we create this in lab )
+
+Click Run workflow, select Run workflos
+
+Confirm that Pygoat deployed successfully by browsing to the Public IPv4 DNS address of your EC2 instance.
