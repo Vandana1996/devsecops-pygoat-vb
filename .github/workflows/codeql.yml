@@ -13,12 +13,11 @@ name: "CodeQL Advanced"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   schedule:
-    - cron: '37 2 * * 1'  
-  workflow_dispatch:
+    - cron: '20 17 * * 3'
 
 jobs:
   analyze:
@@ -44,11 +43,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - language: actions
+        - language: python
           build-mode: none
-      #  - language: ruby
-      #    build-mode: none
-        # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
+        # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
         # Use 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
@@ -68,7 +65,7 @@ jobs:
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v4
+      uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
@@ -85,8 +82,7 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - name: Run manual build steps
-      if: matrix.build-mode == 'manual'
+    - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
         echo 'If you are using a "manual" build mode for one or more of the' \
@@ -97,6 +93,6 @@ jobs:
         exit 1
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v4
+      uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
