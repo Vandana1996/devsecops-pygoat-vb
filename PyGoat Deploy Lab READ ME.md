@@ -11,9 +11,9 @@ In this lesson, we will deploy the lab Pygoat application to our AWS free tier e
 -Create IAM user and configure AWS access
 - Configure GitHub secrets
 
-#Lab Instructions
+# Lab Instructions
 
-#Create EC2 Key Pair
+  # Create EC2 Key Pair
 Sign in to your AWS console
 
 Navigate to the EC2 console (https://console.aws.amazon.com/ec2/)
@@ -34,7 +34,7 @@ Save the private key file in a safe location on your system.
 
 If you plan to use this key on a Mac or Linux system, find the .pem file you just created and run chmod 400 your-key-pair-name.pem
 
-Create Cloudformation Stack
+  # Create Cloudformation Stack
 Sign in to your AWS console.
 
 Navigate to the Cloudformation console. 
@@ -71,7 +71,7 @@ Scroll to the bottom and acknowledge the IAM policy creation warning.
 
 Click Submit
 
-Create IAM user
+  # Create IAM user
 Sign in to AWS account.
 
 Navigate to the IAM console.
@@ -112,7 +112,7 @@ Copy your Access key and Secret access key to a safe location.
 
 Click Done.
 
-Configure GitHub Secrets
+  # Configure GitHub Secrets
 Sign in to your GitHub account
 
 Navigate to your forked Pygoat repository
