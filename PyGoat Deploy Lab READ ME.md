@@ -191,3 +191,18 @@ The following resources explain the process of moving from IAM secret access key
 https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
 
 https://github.com/aws-actions/configure-aws-credentials
+
+  # AWS Lab Resources Clean Up
+Log in to your AWS Console
+
+Click CloudFormation
+
+Select your DevSecOps lab stack
+
+Click Delete
+
+If the delete fails the first time, this is likely due to the fact that the IAM policy has a user attached to it.
+
+Click the Retry delete button
+
+Carefully confirm that you are deleting the correct stack and select “Force delete this entire stack”
