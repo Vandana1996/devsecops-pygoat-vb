@@ -147,6 +147,41 @@ KEY-SSH Keypair (private key)
 
 PORT-22
 
+
+  # Lab Instructions to Test with ZAP
+Download deploy Action: https://github.com/chad-butler-git/devsecops-with-github-actions/blob/main/git/workflows/deploy.yaml 
+
+Add the file to your repo/git/workflows/ directory
+
+Edit the file
+
+Find the following and add your AWS region (e.g. us-west-2, us-east-1, etc.) echo "AWS_DEFAULT_REGION=<YOUR REGION HERE>" >> "$GITHUB_ENV"
+
+Find the following and add your repository url: echo "REPO_LOCATION=<YOUR REPO HERE>" >> "$GITHUB_ENV"
+
+Save the workflow
+
+Run the workflow
+
+Visit the Pygoat URL to ensure it is working
+
+Explore Pygoat
+
+
+
+  # Troubleshooting Tips:
+Ensure your AWS security group allows inbound TCP/80 from your IP address 
+
+If ZAP is timing out, try increasing the timeout (Settings -> Network -> Connection -> Timeout (in seconds): set to 45 seconds and retry
+
+SSH into your AWS EC2 Instance and restart and check service states. 
+
+sudo systemctl restart gunicorn.service ; sudo systemctl status gunicorn.service
+
+sudo systemctl restart nginx ; sudo systemctl status nginx
+
+Check GitHub Action logs and output for errors
+
                               
 
 # Further Reading
