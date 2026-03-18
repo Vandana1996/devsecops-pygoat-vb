@@ -8,6 +8,9 @@
 intentionally vuln web Application Security in django.
 our roadmap build intentionally vuln web Application in django. The Vulnerability can based on OWASP top ten
 <br>
+# Semgrep links
+https://semgrep.dev/docs/semgrep-ci/sample-ci-configs#sample-github-actions-configuration-file
+https://github.com/chad-butler-git/devsecops-with-github-actions/blob/main/git/workflows/semgrep.yml
 
 Table of Contents
 =================
