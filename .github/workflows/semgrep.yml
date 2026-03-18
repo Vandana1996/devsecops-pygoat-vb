@@ -1,5 +1,5 @@
 # Name of this GitHub Actions workflow.
-name: Semgrep
+name: Semgrep Full scan
 
 on:
   # Scan changed files in PRs (diff-aware scanning):
@@ -23,6 +23,7 @@ jobs:
     # Skip any PR created by Dependabot to avoid permission issues.
     if: ((github.event_name == 'schedule' || github.event_name == 'push' || github.event.pull_request.merged == true)
         && github.actor != 'dependabot[bot]')
+    # Not dependabot because dependabot creates PRs for dependency fixes and we dont need that for semgrep scan.
     
     # Name this GitHub Actions job.
     name: Semgrep default scan
